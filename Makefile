@@ -5,11 +5,11 @@ CFLAG=-std=gnu89 -Wall -Wextra -pedantic $(foreach D,$(HEADERS), -I$(D))
 
 CFILES=$(foreach D,$(CLIB),$(wildcard $(D)/*.c))
 OBJECT=$(patsubst %.c,%.o,$(CFILES))
-BIN=$(foreach D,build,$(D)/shell)
+BIN=shell
 
-all: $(BIN)
+all: build/$(BIN)
 
-$(BIN): $(OBJECT)
+build/$(BIN): $(OBJECT)
 	$(CC) $(^) -o $(@)
 
 %.o: %.c
@@ -17,11 +17,11 @@ $(BIN): $(OBJECT)
 
 .PHONY: run
 run:
-	./$(BIN)
+	build/$(BIN)
 
 .PHONY: clean
 clean:
-	rm $(OBJECT) $(BIN)
+	rm $(OBJECT) build/$(BIN)
 
 .PHONY: betty
 betty:
