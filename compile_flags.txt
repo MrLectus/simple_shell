@@ -1,2 +1,2 @@
--Iinclude
+-include
 -std=gnu89
